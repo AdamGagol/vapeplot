@@ -9,9 +9,16 @@ def hex_to_int_(col):
     b = (color%(256**3) - 256*g - r)//256**2
     return np.array((r,g,b))
 
+def full_hex_(col):
+    hex1 = hex(col)[2:]
+    if len(hex1) == 1:
+        hex1 = '0' + hex1
+    return hex1
+    
 def int_to_hex_(col):
     color = col[0] + 256*col[1] + 256**2*col[2]
-    return '#'+hex(color)[2:]
+#     print(hex(color), hex(col[2])[2:], hex(col[1])[2:] + hex(col[0])[2:])
+    return '#' + full_hex_(col[2]) + full_hex_(col[1]) + full_hex_(col[0])
 
 def prolong_(palette, mult = 4):
     new_palette = []

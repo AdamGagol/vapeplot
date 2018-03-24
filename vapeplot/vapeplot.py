@@ -34,7 +34,7 @@ def check_key(palname):
     try: palettes[palname]
     except KeyError:
         raise KeyError("{} not an accepted palette name. Check vapeplot.available() for available palettes".format(palname))
-def cmap(palname, prol = 10):
+def cmap(palname, prol = 1):
     check_key(palname)
     return matplotlib.colors.ListedColormap(prolong_(palettes[palname], prol))
 def despine(ax,all=False):
