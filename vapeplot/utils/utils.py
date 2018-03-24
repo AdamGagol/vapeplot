@@ -17,6 +17,7 @@ def prolong_(palette, mult = 4):
     new_palette = []
     for i in range(len(palette) - 1):
         col1, col2 = hex_to_int_(palette[i]), hex_to_int_(palette[i+1])
-        for m in range(mult+1):
+        for m in range(mult):
             new_palette.append(int_to_hex_(((1-m/mult)*col1 + (m/mult)*col2).astype(int) ))
+    new_palette.append(palette[-1])
     return new_palette
