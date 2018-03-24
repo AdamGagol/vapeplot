@@ -2,6 +2,7 @@
 from matplotlib import rcParams
 import matplotlib.pyplot as plt 
 import cycler,matplotlib
+from .utils.utils import hex_to_int_, int_to_hex_, prolong_
 
 palettes = {
     "vaporwave" : ["#94D0FF","#8795E8","#966bff","#AD8CFF","#C774E8","#c774a9","#FF6AD5","#ff6a8b","#ff8b8b","#ffa58b","#ffde8b","#cdde8b","#8bde8b","#20de8b"],
@@ -13,6 +14,8 @@ palettes = {
     "macplus" : ["#1b4247","#09979b","#75d8d5","#ffc0cb","#fe7f9d","#65323e"],
     "seapunk" : ["#532e57","#a997ab","#7ec488","#569874","#296656"]
 }
+
+
 def available(show=True):
     if not show:
         return palettes.keys()
@@ -31,9 +34,9 @@ def check_key(palname):
     try: palettes[palname]
     except KeyError:
         raise KeyError("{} not an accepted palette name. Check vapeplot.available() for available palettes".format(palname))
-def cmap(palname):
+def cmap(palname, prol = 10):
     check_key(palname)
-    return matplotlib.colors.ListedColormap(palettes[palname])
+    return matplotlib.colors.ListedColormap(prolong_(palettes[palname], prol))
 def despine(ax,all=False):
     if all==True:
         for sp in ax.spines:
